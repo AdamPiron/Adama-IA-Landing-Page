@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adam Piron</title>
+<meta name="description" content="Adam Piron — Chief of Staff at VistIQ, ex-BNP Paribas M&A. Looking to join an ambitious B2B startup in Agentic AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Clean and simple: white page, one column, one accent colour */
+  :root {
+    --bg: #ffffff;
+    --text: #111111;
+    --muted: #6b6b6b;
+    --line: #e8e8e8;
+    --soft: #f6f6f4;
+    --accent: #1d4ed8;
+    --accent-text: #ffffff;
+    --pro-bg: #eef3ff;
+    --pro-ink: #1d4ed8;
+    --own-bg: #fdf4e7;
+    --own-ink: #b45309;
+  }
+  /* Dark theme: chosen with the Light/Dark switch in the nav; light by default */
+  :root[data-theme="dark"] {
+      --bg: #111111;
+      --text: #f2f2f2;
+      --muted: #9a9a9a;
+      --line: #2a2a2a;
+      --soft: #1a1a1a;
+      --accent: #6b93ff;
+      --accent-text: #0b0b0b;
+      --pro-bg: #17203a;
+      --pro-ink: #8fb0ff;
+      --own-bg: #2a2115;
+      --own-ink: #f0b46a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; overflow-x: clip; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.65 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 24px; }
+  .name { font-weight: 600; text-decoration: none; letter-spacing: -.01em; }
+  .nav-links { display: flex; gap: 24px; font-size: 15px; }
+  .nav-links a { color: var(--muted); text-decoration: none; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 8px;
+    font: inherit; font-size: 16px; font-weight: 500;
+    text-decoration: none; cursor: pointer;
+    border: 1px solid var(--line); background: var(--bg); color: var(--text);
+    transition: background .15s, border-color .15s;
+  }
+  .btn:hover { border-color: var(--muted); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+  .btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, var(--text)); border-color: transparent; }
+  .btn-small { padding: 8px 14px; font-size: 14px; }
+
+  /* Light/Dark switch */
+  .nav-end { display: flex; align-items: center; gap: 12px; }
+  .theme { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 8px; background: var(--soft); }
+  .theme button {
+    display: inline-flex; align-items: center; justify-content: center; padding: 5px 8px;
+    border: 0; border-radius: 6px; background: transparent; color: var(--muted); cursor: pointer;
+  }
+  .theme button:hover { color: var(--text); }
+  .theme button[aria-pressed="true"] { background: var(--bg); color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+
+  /* Hero */
+  .hero { padding: 104px 0 72px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-size: 14px; color: var(--muted); margin-top: 20px; display: flex; align-items: center; gap: 8px; }
+  .eyebrow b { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; display: inline-block; }
+  /* Round portrait: the photo is zoomed to 110% and slid left, so the face (left of centre in the file) sits in the middle */
+  .avatar { display: block; width: 136px; height: 136px; border-radius: 50%; overflow: hidden; margin-bottom: 28px; border: 1px solid var(--line); }
+  .avatar img { display: block; width: 110%; height: 110%; max-width: none; margin-left: -1%; }
+  h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.08; letter-spacing: -.035em; font-weight: 700; }
+  .lead { font-size: 19px; color: var(--muted); margin-top: 24px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+
+  /* Get in touch menu */
+  .touch { position: relative; }
+  .touch-menu {
+    display: none; position: absolute; top: calc(100% + 8px); left: 0; min-width: 200px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.08); z-index: 5;
+  }
+  .touch.open .touch-menu { display: block; }
+  .touch-menu a { display: block; padding: 10px 12px; border-radius: 6px; text-decoration: none; font-size: 15px; }
+  .touch-menu a:hover { background: var(--soft); }
+
+
+  /* Sections */
+  section { padding: 88px 0 0; }
+  .kicker { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  h2 { font-size: clamp(28px, 4vw, 36px); letter-spacing: -.025em; line-height: 1.15; margin: 10px 0 12px; }
+  .intro { color: var(--muted); margin-bottom: 36px; }
+  h3 { font-size: 18px; letter-spacing: -.01em; line-height: 1.35; }
+  p + p { margin-top: 12px; }
+
+  /* AI projects: endless carousel drifting left, full page width; pauses on hover, can be dragged */
+  .carousel {
+    width: 100vw; margin: 28px 0 0 calc(50% - 50vw);
+    overflow: hidden; cursor: grab; touch-action: pan-y;
+    mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+  .carousel.is-grabbing { cursor: grabbing; }
+  .projects { display: flex; gap: 16px; width: max-content; padding: 4px 0; will-change: transform; user-select: none; }
+  .project { width: 280px; flex-shrink: 0; background: var(--soft); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; }
+  .project .type { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .project.pro { background: var(--pro-bg); }
+  .project.own { background: var(--own-bg); }
+  .project.pro .type { color: var(--pro-ink); }
+  .project.own .type { color: var(--own-ink); }
+  .kind { align-self: flex-start; margin-bottom: 14px; font-size: 12px; font-weight: 500; padding: 2px 9px; border-radius: 999px; background: var(--bg); white-space: nowrap; }
+  .project.pro .kind { color: var(--pro-ink); }
+  .project.own .kind { color: var(--own-ink); }
+  .project p { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .project .open { color: var(--accent); font-size: 14px; font-weight: 500; text-decoration: none; margin-top: 10px; }
+  .project .open:hover { text-decoration: underline; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 16px; }
+  .chip { font-size: 12px; padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
+
+  /* About me */
+  /* Each part of About me is its own block: small label, optional title, a rule above */
+  .block { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .about .kicker + .block { margin-top: 20px; padding-top: 0; border-top: 0; }
+  .block .label { display: block; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .block h3 { font-size: 22px; letter-spacing: -.015em; margin-bottom: 12px; }
+  .block .rows > li:last-child, .block .jobs > li:last-child { border-bottom: 0; }
+  .rows { list-style: none; }
+  .rows li { display: flex; justify-content: space-between; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .rows strong { font-weight: 500; display: block; }
+  .rows .org, .jobs .org { display: block; color: var(--muted); font-size: 15px; }
+  .rows .meta, .jobs .meta { color: var(--muted); font-size: 14px; text-align: right; white-space: nowrap; }
+
+  .interests { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+  .interests div { background: var(--soft); border-radius: 12px; padding: 22px 12px; text-align: center; font-weight: 500; font-size: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .interests span { font-size: 28px; line-height: 1; }
+
+  /* Job history: each role opens to its bullet points */
+  .jobs { list-style: none; }
+  .jobs > li { border-bottom: 1px solid var(--line); }
+  .jobs summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 24px; padding: 14px 0; }
+  .jobs summary::-webkit-details-marker { display: none; }
+  .jobs summary strong { font-weight: 500; display: block; }
+  .jobs summary strong::after { content: "+"; color: var(--muted); font-weight: 400; margin-left: 8px; }
+  .jobs details[open] summary strong::after { content: "–"; }
+  .jobs summary:hover strong { color: var(--accent); }
+  .jobs .contract { display: block; }
+  .jobs ul { list-style: disc; margin: 0 0 18px 18px; color: var(--muted); font-size: 15px; }
+  .jobs ul li { padding: 3px 0; }
+  .jobs .main { color: var(--text); font-weight: 500; }
+  .jobs ul a { color: var(--accent); text-decoration: none; }
+  .jobs ul a:hover { text-decoration: underline; }
+  .jobs ul ul { list-style: circle; margin: 4px 0 4px 20px; font-size: 14px; }
+  .jobs ul ul li { padding: 2px 0; }
+
+  /* FAQ */
+  #faq details { border-top: 1px solid var(--line); }
+  #faq details:last-child { border-bottom: 1px solid var(--line); }
+  #faq summary { list-style: none; cursor: pointer; padding: 20px 0; font-weight: 500; display: flex; justify-content: space-between; gap: 16px; }
+  #faq summary::-webkit-details-marker { display: none; }
+  #faq summary::after { content: "+"; color: var(--muted); font-size: 22px; line-height: 1; }
+  #faq details[open] summary::after { content: "–"; }
+  #faq details p a { color: var(--accent); text-decoration: none; }
+  #faq details p a:hover { text-decoration: underline; }
+  #faq details p { color: var(--muted); padding: 0 0 20px; max-width: 620px; }
+
+  /* Final CTA + footer */
+  .final { margin: 104px 0 0; padding: 56px 40px; background: var(--soft); border-radius: 16px; text-align: center; }
+  .final h2 { margin-top: 0; }
+  .final p { color: var(--muted); margin-bottom: 28px; }
+  .contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin-top: 28px; font-size: 15px; }
+  .contacts a { color: var(--muted); text-decoration: none; }
+  .contacts a:hover { color: var(--text); }
+  footer { display: flex; justify-content: space-between; padding: 40px 0 48px; font-size: 14px; color: var(--muted); }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .nav-links { display: none; }
+    .hero { padding: 64px 0 56px; }
+    .rows li, .jobs summary { flex-direction: column; gap: 2px; }
+    .rows .meta, .jobs .meta { text-align: left; white-space: normal; }
+    .final { padding: 40px 24px; }
+    .interests { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+  <nav aria-label="Main">
+    <div class="wrap">
+      <a href="#top" class="name">Adam Piron</a>
+      <div class="nav-links">
+        <a href="#about">About me</a>
+        <a href="#projects">AI projects</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-end">
+        <div class="theme" role="group" aria-label="Colour theme">
+          <button type="button" data-set-theme="light" aria-pressed="true" aria-label="Light theme" title="Light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
+          <button type="button" data-set-theme="dark" aria-pressed="false" aria-label="Dark theme" title="Dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        </div>
+        <a href="https://calendar.app.google/VdEyQ5Jb3UXyeMmC7" target="_blank" rel="noopener" class="btn btn-primary btn-small">Book a call</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap" id="top">
+    <header class="hero">
+      <div class="avatar"><img src="Profile%20photo%20%E2%80%94%20office%20background.jpg" alt="Portrait of Adam Piron" width="150" height="150"></div>
+      <h1>Adam Piron</h1>
+      <p class="lead">Chief of Staff, with 2+ years of experience in Investment Banking, open to opportunities in Agentic AI engineering and implementation.</p>
+      <p class="eyebrow"><b></b>Available from January 2027 · Paris</p>
+      <div class="cta-row">
+        <a href="https://calendar.app.google/VdEyQ5Jb3UXyeMmC7" target="_blank" rel="noopener" class="btn btn-primary">Book an introduction call →</a>
+        <div class="touch" id="touch">
+          <button class="btn" id="touchBtn" aria-expanded="false" aria-controls="touchMenu">Get in touch</button>
+          <div class="touch-menu" id="touchMenu">
+            <a href="mailto:pironadam@gmail.com">Mail</a>
+            <a href="https://www.linkedin.com/in/adam-piron/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://wa.me/33665659622" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- Case studies: section to add once Adam provides them (Context → What I did → Result) -->
+
+    <section id="about" class="about">
+      <span class="kicker">About me</span>
+
+      <div class="block">
+        <span class="label">Job history</span>
+        <h3>From Investment Banking to AI</h3>
+      <ul class="jobs">
+        <li><details>
+          <summary><div><strong>Chief of Staff</strong><span class="org">VistIQ.AI</span></div><span class="meta">Jun – Dec 2026 (7 months) · Paris<span class="contract">Freelance</span></span></summary>
+          <ul>
+              <li><span class="main">Product</span>
+                <ul>
+                  <li>Gathered and structured user feedback to feed a product backlog built on Notion</li>
+                </ul>
+              </li>
+              <li><span class="main">Operations</span>
+                <ul>
+                  <li>Structured and automated internal processes, mixing Notion, GitHub and Claude</li>
+                  <li>Built a company AI Brain for skill sharing and live dashboards, with Claude, Obsidian and GitHub</li>
+                </ul>
+              </li>
+              <li><span class="main">Sales</span>
+                <ul>
+                  <li>Represented VistIQ.AI at IPEM Paris, the international private equity forum, pitching the product to 10+ senior fund managers from around the world</li>
+                  <li>Led 20-minute product demos for 10+ clients, in French and English</li>
+                </ul>
+              </li>
+              <li><span class="main">Marketing &amp; GTM</span>
+                <ul>
+                  <li>Wrote LinkedIn posts for the <a href="https://www.linkedin.com/company/vistiq-ai/" target="_blank" rel="noopener">VistIQ.AI company page</a></li>
+                  <li>Built an AI-powered GTM pipeline taking raw databases all the way to booked demos, combining Preqin, Clay, Lemlist and Attio</li>
+                  <li>Ran a competitor analysis, booking 10+ demos with competitors</li>
+                </ul>
+              </li>
+              <li><span class="main">HR</span>
+                <ul>
+                  <li>Led the recruitment of 2 hires: a Software Engineer and a Sales profile</li>
+                </ul>
+              </li>
+              <li><span class="main">Admin</span>
+                <ul>
+                  <li>Owned the company's insurance: civil liability, professional liability and cyber</li>
+                  <li>Led the applications for public funding: research tax credit (CIR) and Young Innovative Company status (JEI)</li>
+                </ul>
+              </li>
+          </ul>
+        </details></li>
+        <li><details>
+          <summary><div><strong>M&amp;A Analyst — Renewable Energy (Latin America)</strong><span class="org">BNP Paribas CIB</span></div><span class="meta">Jun 2025 – Feb 2026 (9 months) · New York<span class="contract">Full time</span></span></summary>
+          <ul>
+              <li><span class="main">Executed 2 renewable asset M&amp;A transactions (100MW and 1GW)</span>
+                <ul>
+                  <li>Prepared strategic notes, briefings, and pre/post-meeting summaries</li>
+                  <li>Produced presentation materials for marketing initiatives and internal analyses</li>
+                  <li>Built complex financial models including data analysis, cash flow projections and ROI estimation</li>
+                </ul>
+              </li>
+              <li><span class="main">Led a roadshow to promote the sale of renewable assets to international investors</span>
+                <ul>
+                  <li>Mapped and qualified 50+ target investors</li>
+                  <li>Prepared discussion materials, initial outreach, follow-ups, and NDA negotiations</li>
+                </ul>
+              </li>
+              <li><span class="main">Managed 2 due diligence processes (sell-side and buy-side)</span>
+                <ul>
+                  <li>Data room structuring, Q&amp;A coordination between advisors and companies, scheduling and leading weekly meetings (30+ people)</li>
+                  <li>Developed an AI-powered dashboard to process 1,000+ incoming questions, identify recurring themes, strategically prioritize and reduce to 300 key questions</li>
+                </ul>
+              </li>
+          </ul>
+        </details></li>
+        <li><details>
+          <summary><div><strong>Leveraged &amp; Acquisition Finance</strong><span class="org">BNP Paribas CIB</span></div><span class="meta">Mar 2023 – Sep 2024 (19 months) · Paris<span class="contract">Apprenticeship</span></span></summary>
+          <ul>
+              <li><span class="main">Executed 5 debt raises for M&amp;A and refinancing transactions</span>
+                <ul>
+                  <li>Built 10+ financial models (debt capacity, repayment scenarios)</li>
+                  <li>Prepared business cases to secure loans from international investors</li>
+                </ul>
+              </li>
+              <li><span class="main">Managed strategic client relationships (large corporates and investment funds)</span>
+                <ul>
+                  <li>Proposed 5+ unsolicited pitch ideas, developed outreach strategies and created presentation materials</li>
+                  <li>VBA automation of Bloomberg data analysis and PowerPoint dashboards</li>
+                </ul>
+              </li>
+          </ul>
+        </details></li>
+        <li><details>
+          <summary><div><strong>Private Equity Analyst</strong><span class="org">Activa Capital</span></div><span class="meta">Sep 2022 – Mar 2023 (7 months) · Paris<span class="contract">Internship</span></span></summary>
+          <ul>
+              <li>Sourced and screened 100+ investment opportunities (EBITDA €2m–€10m)</li>
+              <li>Produced 20+ synthetic one-pagers on target companies</li>
+              <li>10+ discovery interviews with executives; 3 quantitative market studies (B2B SaaS healthcare, B2C retail airports…)</li>
+              <li>Drafted investment memo covering strategic, operational &amp; financial considerations</li>
+          </ul>
+        </details></li>
+      </ul>
+      </div>
+
+      <div class="block">
+        <span class="label">Education</span>
+        <h3>Business School profile, learning AI engineering</h3>
+      <ul class="rows">
+        <li><div><strong>AI Product Builder</strong><span class="org">Le Wagon</span></div><span class="meta">2026 · 1 week · Paris</span></li>
+        <li><div><strong>Master in Management</strong><span class="org">ESCP Business School</span></div><span class="meta">2020 – 2024 · London &amp; Paris</span></li>
+        <li><div><strong>Preparatory classes</strong><span class="org">Institution Saint Jean</span></div><span class="meta">2018 – 2020 · Douai</span></li>
+      </ul>
+      </div>
+
+      <div class="block">
+        <span class="label">Summer jobs</span>
+      <ul class="rows">
+        <li><strong>Waiter</strong><span class="meta">2022 · Sydney, Australia</span></li>
+        <li><strong>Humanitarian volunteer</strong><span class="meta">2021 · Togo</span></li>
+        <li><strong>Bartender</strong><span class="meta">2019 · London, UK</span></li>
+        <li><strong>Cowboy on a ranch</strong><span class="meta">2017 · Montana, USA</span></li>
+      </ul>
+      </div>
+
+      <div class="block">
+        <span class="label">Interests</span>
+      <div class="interests"><div><span aria-hidden="true">🏃</span>Running</div><div><span aria-hidden="true">🥊</span>Muay Thai</div><div><span aria-hidden="true">🎭</span>Improv</div><div><span aria-hidden="true">📚</span>Personal Development</div></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <span class="kicker">AI Projects</span>
+      <h2>Examples of things I've built with AI</h2>
+      <div class="carousel" id="carousel">
+      <div class="projects" id="track">
+        <article class="project pro">
+          <span class="kind">Professional</span>
+          <span class="type">AI agents harness</span>
+          <h3>Company AI Brain</h3>
+          <p>A shared workspace for skill sharing and live dashboards, built in July 2026.</p>
+          <div class="chips"><span class="chip">Claude</span><span class="chip">Obsidian</span><span class="chip">GitHub</span></div>
+        </article>
+        <article class="project pro">
+          <span class="kind">Professional</span>
+          <span class="type">GTM automation</span>
+          <h3>End-to-End GTM Pipeline</h3>
+          <p>From databases to Clay enrichment, Lemlist mailing and Attio tracking.</p>
+          <div class="chips"><span class="chip">Clay</span><span class="chip">Lemlist</span><span class="chip">Attio</span></div>
+        </article>
+        <article class="project own">
+          <span class="kind">Personal</span>
+          <span class="type">AI agent</span>
+          <h3>Personal Coach</h3>
+          <p>Alex Hormozi's content turned into a personal coach for my personal and professional development.</p>
+          <div class="chips"><span class="chip">Claude</span></div>
+        </article>
+        <article class="project own">
+          <span class="kind">Personal</span>
+          <span class="type">Automation</span>
+          <h3>From Podcast to Kindle Book</h3>
+          <p>Turns YouTube videos and podcasts into structured e-books, sent straight to my Kindle.</p>
+          <div class="chips"><span class="chip">Claude Code</span></div>
+        </article>
+        <article class="project own">
+          <span class="kind">Personal</span>
+          <span class="type">App</span>
+          <h3>Goals &amp; Habits Dashboard</h3>
+          <p>Full-stack app tracking personal and professional habits and goals, on Mac and mobile.</p>
+          <div class="chips"><span class="chip">Claude Code</span><span class="chip">Strava API</span></div>
+        </article>
+        <article class="project own">
+          <span class="kind">Personal</span>
+          <span class="type">App</span>
+          <h3>Meditation App</h3>
+          <p>A meditation app vibe-coded for my own practice.</p>
+          <a class="open" href="https://adampiron.github.io/meditation-app/" target="_blank" rel="noopener">Open the app ↗</a>
+          <div class="chips"><span class="chip">Claude Code</span></div>
+        </article>
+      </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <span class="kicker">FAQ</span>
+      <h2>Questions you might have</h2>
+      <div style="margin-top:28px">
+        <details>
+          <summary>What is your availability?</summary>
+          <p>I'm available from January 2027, when my current contract ends.</p>
+        </details>
+        <details>
+          <summary>What languages do you speak?</summary>
+          <p>French, English and Spanish, all fluently.<br>I've worked in all three, including in English-speaking countries.</p>
+        </details>
+        <details>
+          <summary>Do you have any contact for reference?</summary>
+          <p><a href="https://www.linkedin.com/in/s%C3%A9verine-gr%C3%A9goire-05762425/" target="_blank" rel="noopener">Séverine Grégoire</a>, CEO of VistIQ.AI, has worked with me closely and knows I'm looking for my next role. Feel free to reach out to her.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="final">
+      <h2>Let's see if I fit with your team</h2>
+      <p>I would be happy to talk about your roadmap, your needs, and where I could help.</p>
+      <a href="https://calendar.app.google/VdEyQ5Jb3UXyeMmC7" target="_blank" rel="noopener" class="btn btn-primary">Book an introduction call →</a>
+      <div class="contacts">
+        <a href="mailto:pironadam@gmail.com">pironadam@gmail.com</a>
+        <a href="tel:+33665659622">+33 6 65 65 96 22</a>
+        <a href="https://www.linkedin.com/in/adam-piron/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://wa.me/33665659622" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+
+    <footer>
+      <span>© 2026 Adam Piron</span>
+      <span>Paris, France</span>
+    </footer>
+  </main>
+
+  <script>
+    // Light/Dark switch: light by default, the visitor's choice is remembered
+    (function () {
+      var root = document.documentElement, buttons = document.querySelectorAll("[data-set-theme]");
+      function set(t) {
+        root.setAttribute("data-theme", t);
+        buttons.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-set-theme") === t); });
+      }
+      try { var saved = localStorage.getItem("theme"); if (saved === "dark") set("dark"); } catch (_) {}
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var t = b.getAttribute("data-set-theme"); set(t);
+          try { localStorage.setItem("theme", t); } catch (_) {}
+        });
+      });
+    })();
+    (function () {
+      var touch = document.getElementById("touch"), btn = document.getElementById("touchBtn");
+      function close() { touch.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        btn.setAttribute("aria-expanded", touch.classList.toggle("open"));
+      });
+      document.addEventListener("click", function (e) { if (!touch.contains(e.target)) close(); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    })();
+    // AI projects carousel: slow drift to the left, endless, pauses on hover, drag or swipe sideways to move it
+    (function () {
+      var wrap = document.getElementById("carousel"), track = document.getElementById("track");
+      // Repeat the set until it covers twice the widest screen, so the loop never shows a gap
+      var originals = Array.prototype.slice.call(track.children), n = originals.length;
+      function fill() {
+        while (track.scrollWidth < 2 * window.innerWidth + track.children[n].offsetLeft) {
+          originals.forEach(function (c) {
+            var clone = c.cloneNode(true); clone.setAttribute("aria-hidden", "true"); track.appendChild(clone);
+          });
+        }
+      }
+      originals.forEach(function (c) {
+        var clone = c.cloneNode(true); clone.setAttribute("aria-hidden", "true"); track.appendChild(clone);
+      });
+      fill();
+      window.addEventListener("resize", fill);
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var SPEED = 25, offset = 0, hovering = false, dragging = false, last = performance.now(), startX = 0, startOffset = 0;
+      function loop() { return track.children[n].offsetLeft - track.children[0].offsetLeft; }
+      function apply() { var w = loop(); offset = ((offset % w) + w) % w; track.style.transform = "translateX(" + (-offset) + "px)"; }
+      function tick(now) {
+        var dt = (now - last) / 1000; last = now;
+        if (!still && !hovering && !dragging) { offset += SPEED * dt; apply(); }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      wrap.addEventListener("mouseenter", function () { hovering = true; });
+      wrap.addEventListener("mouseleave", function () { hovering = false; last = performance.now(); });
+      wrap.addEventListener("wheel", function (e) {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        e.preventDefault(); offset += e.deltaX; apply();
+      }, { passive: false });
+      var down = false, moved = false;
+      wrap.addEventListener("pointerdown", function (e) { down = true; moved = false; startX = e.clientX; startOffset = offset; });
+      wrap.addEventListener("pointermove", function (e) {
+        if (!down) return;
+        if (!dragging && Math.abs(e.clientX - startX) > 5) {
+          dragging = moved = true; wrap.classList.add("is-grabbing"); wrap.setPointerCapture(e.pointerId);
+        }
+        if (dragging) { offset = startOffset - (e.clientX - startX); apply(); }
+      });
+      function end(e) {
+        down = false;
+        if (!dragging) return;
+        dragging = false; wrap.classList.remove("is-grabbing");
+        try { wrap.releasePointerCapture(e.pointerId); } catch (_) {}
+        last = performance.now();
+      }
+      ["pointerup", "pointercancel", "pointerleave"].forEach(function (t) { wrap.addEventListener(t, end); });
+      // A drag that ends on a link must not open it
+      wrap.addEventListener("click", function (e) { if (moved) { e.preventDefault(); moved = false; } }, true);
+      wrap.addEventListener("dragstart", function (e) { e.preventDefault(); });
+    })();
+  </script>
+</body>
+</html>
