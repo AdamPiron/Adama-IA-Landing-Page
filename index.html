@@ -175,6 +175,11 @@
   .jobs ul a:hover { text-decoration: underline; }
   .jobs ul ul { list-style: circle; margin: 4px 0 4px 20px; font-size: 14px; }
   .jobs ul ul li { padding: 2px 0; }
+  .jobs .intro { color: var(--muted); font-size: 15px; margin: 0 0 12px; max-width: 640px; }
+  /* Third level: numbered steps or sub-bullets under a bullet */
+  .jobs ul ul ol { list-style: decimal; margin: 4px 0 4px 22px; font-size: 14px; }
+  .jobs ul ul ul { list-style: square; margin: 4px 0 4px 20px; }
+  .jobs ul ul ol li, .jobs ul ul ul li { padding: 1px 0; }
 
   /* FAQ */
   #faq details { border-top: 1px solid var(--line); }
@@ -258,28 +263,71 @@
       <ul class="jobs">
         <li><details>
           <summary><div><strong>Chief of Staff</strong><span class="org">VistIQ.AI</span></div><span class="meta">Jun – Dec 2026 (7 months) · Paris<span class="contract">Full time</span></span></summary>
+          <p class="intro">As VistIQ.AI’s first non-tech hire, I worked closely with the CEO across a wide range of missions, balancing immediate execution, with medium-term organisation and long-term vision.</p>
           <ul>
               <li><span class="main">Operations</span>
                 <ul>
-                  <li>Built a company AI Brain for skill sharing and live dashboards, with Claude, Obsidian and GitHub</li>
+                  <li>Structured weekly team priorities in Notion across Tech, Product, and Sales, using a Now / Next / Later framework.</li>
+                  <li>Built and deployed an internal AI harness powered by Claude, combining a light context layer with specialized agents, shared company-wide via GitHub.</li>
                 </ul>
               </li>
               <li><span class="main">Product</span>
                 <ul>
-                  <li>Gathered and structured user feedback to feed a product backlog built on Notion</li>
-                </ul>
-              </li>
-              <li><span class="main">Sales</span>
-                <ul>
-                  <li>Represented VistIQ.AI at IPEM Paris, the international private equity forum, pitching the product to 10+ senior fund managers from around the world</li>
-                  <li>Led 20-minute product demos for 10+ clients, in French and English</li>
+                  <li>Led feedback sessions with the first 5 users, developed an AI agent to generate actionable product tickets, and structured a prioritized backlog in Notion for the tech team.</li>
                 </ul>
               </li>
               <li><span class="main">Marketing &amp; GTM</span>
                 <ul>
-                  <li>Wrote LinkedIn posts for the <a href="https://www.linkedin.com/company/vistiq-ai/" target="_blank" rel="noopener">VistIQ.AI company page</a></li>
-                  <li>Built an AI-powered GTM pipeline taking raw databases all the way to booked demos, combining Preqin, Clay, Lemlist and Attio</li>
-                  <li>Ran a competitor analysis, booking 10+ demos with competitors</li>
+                  <li>Launched 2 outbound email campaigns and built the company's first GTM pipeline:
+                    <ol>
+                      <li>Defined target Ideal Customer Profile (ICP) segments.</li>
+                      <li>Built and enriched prospect databases using Clay.</li>
+                      <li>Drafted tailored email sequences for each ICP.</li>
+                      <li>Bought domains and created email addresses via ZapMail.</li>
+                      <li>Launched and managed outbound campaigns through Lemlist.</li>
+                      <li>Built the initial sales funnel in Attio.</li>
+                      <li>Developed a performance monitoring dashboard using Claude.</li>
+                      <li>Results: Booked 15 demos in September, and 25 demos in October.</li>
+                    </ol>
+                  </li>
+                  <li>Coordinated the press campaign for the product launch:
+                    <ol>
+                      <li>Drafted the press release.</li>
+                      <li>Organized media interviews with BFM Business, Les Échos, Maddyness, and CFNEWS.</li>
+                      <li>Coordinated an IPEM Paris conference featuring Emmanuel Marril (Managing Director, OpenAI EMEA) and Marc Menasé (Founding Partner, Founders Future).</li>
+                    </ol>
+                  </li>
+                  <li>Created LinkedIn content for the <a href="https://www.linkedin.com/company/vistiq-ai/" target="_blank" rel="noopener">VistIQ.AI company page</a>.
+                    <ol>
+                      <li>Doubled the follower base from 500 to over 1,000 in 2 months.</li>
+                    </ol>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="main">Sales</span>
+                <ul>
+                  <li>Represented VistIQ.AI at IPEM Paris, the international private equity forum, pitching the product to 10+ senior private equity fund managers.</li>
+                  <li>Conducted 10+ client product demos in French and English.
+                    <ul>
+                      <li>Directly contributed to closing 2 clients.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class="main">Strategy</span>
+                <ul>
+                  <li>Conducted an in-depth competitive benchmark, assessing product offerings and GTM positioning.
+                    <ul>
+                      <li>Attended 7 competitor demos under an alias</li>
+                    </ul>
+                  </li>
+                  <li>Produced 3 strategic reports combining market insights with actionable recommendations:
+                    <ol>
+                      <li>Market outlook: Analyzed the next 12 months of AI evolution, from chatbots to agents, and the implications for SaaS business models.</li>
+                      <li>Product strategy: Identified key UI/UX challenges and opportunities for new features.</li>
+                      <li>Customer segmentation: Assessed ICP-specific needs and priorities.</li>
+                    </ol>
+                  </li>
                 </ul>
               </li>
               <li><span class="main">HR</span>
@@ -287,10 +335,16 @@
                   <li>Led the recruitment of 2 hires: a Software Engineer and a Sales profile</li>
                 </ul>
               </li>
-              <li><span class="main">Admin</span>
+              <li><span class="main">Administration</span>
                 <ul>
-                  <li>Owned the company's insurance: civil liability, professional liability and cyber</li>
-                  <li>Led the applications for public funding: research tax credit (CIR) and Young Innovative Company status (JEI)</li>
+                  <li>Negotiated directly with external parties, service providers, landlords, and event organizers.
+                    <ul>
+                      <li>Secured €40k in cost savings.</li>
+                    </ul>
+                  </li>
+                  <li>Implemented a complex insurance program covering the company’s operations across the US and France.</li>
+                  <li>Managed applications for public funding and tax incentives</li>
+                  <li>Structured the company's cybersecurity policies to align with DORA requirements and SOC 2 standards.</li>
                 </ul>
               </li>
           </ul>
